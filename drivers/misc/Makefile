@@ -101,3 +101,5 @@ obj-$(CONFIG_INPUT_ABOV_MMI_OVERLAY) += abov_mmi_overlay/
 obj-$(CONFIG_MOTO_UTAGS) += utag/
 obj-$(CONFIG_PEN_BU520XX) += pen/
 obj-$(CONFIG_REGULATOR_TPS61280) += tps61280/
+
+obj-$(CONFIG_FORCE_FAST_CHARGE) += fastchg.o
