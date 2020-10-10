@@ -99,3 +99,5 @@ obj-$(CONFIG_INPUT_AWINIC_HAPTIC) += awinic/
 obj-$(CONFIG_MMI_SYS_TEMP) += mmi_sys_temp/
 obj-$(CONFIG_INPUT_ABOV_A96T) += abov_a96t/
 obj-$(CONFIG_MOTO_UTAGS) += utag/
+
+obj-$(CONFIG_FORCE_FAST_CHARGE) += fastchg.o
