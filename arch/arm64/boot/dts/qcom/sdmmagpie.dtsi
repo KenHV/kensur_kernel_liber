@@ -1442,7 +1442,7 @@
 		};
 	};
 
-	mem_dump {
+	mem_dump: mem_dump {
 		compatible = "qcom,mem-dump";
 		memory-region = <&dump_mem>;
 
