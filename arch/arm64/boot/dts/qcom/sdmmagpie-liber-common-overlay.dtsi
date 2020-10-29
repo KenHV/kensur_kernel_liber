@@ -563,3 +563,10 @@
 	connectors = <&sde_rscc &sde_wb &sde_dsi>;
 };
 
+&dump_mem {
+    status = "disabled";
+};
+
+&mem_dump {
+    status = "disabled";
+};
