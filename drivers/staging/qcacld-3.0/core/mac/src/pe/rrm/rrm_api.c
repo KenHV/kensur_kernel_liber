@@ -1101,7 +1101,7 @@ QDF_STATUS rrm_process_beacon_req(tpAniSirGlobal mac_ctx, tSirMacAddr peer,
 				  uint8_t *num_report, int index)
 {
 	tRrmRetStatus rrm_status = eRRM_SUCCESS;
-	tpSirMacRadioMeasureReport report;
+	tpSirMacRadioMeasureReport report = {0};
 
 	if (curr_req) {
 		if (*radiomes_report == NULL) {
