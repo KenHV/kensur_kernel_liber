@@ -519,6 +519,10 @@ fail:
 	debugfs_remove_recursive(dent);
 }
 
+static void ipa_mhi_debugfs_destroy(void)
+{
+	debugfs_remove_recursive(dent);
+}
 #else
 static void ipa_mhi_debugfs_init(void) {}
 static void ipa_mhi_debugfs_destroy(void) {}
