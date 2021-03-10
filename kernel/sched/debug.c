@@ -21,10 +21,6 @@
 
 #include "sched.h"
 
-#if defined(CONFIG_ANDROID) && !defined(CONFIG_DEBUG_FS)
-#define CONFIG_DEBUG_FS
-#endif
-
 static DEFINE_SPINLOCK(sched_debug_lock);
 
 /*
