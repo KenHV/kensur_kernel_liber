@@ -25,7 +25,7 @@ struct cpufreq_stats {
 	unsigned int *trans_table;
 };
 
-static int cpufreq_stats_update(struct cpufreq_stats *stats)
+static void cpufreq_stats_update(struct cpufreq_stats *stats)
 {
 	unsigned long long cur_time = get_jiffies_64();
 	unsigned long long time = cur_time;
