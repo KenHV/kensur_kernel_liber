@@ -50,6 +50,8 @@
 #define CAM_IR_LED     (1 << 27)
 #define STR_BUFFER_MAX_LENGTH  1024
 
+#if 0
+
 /*
  *  cam_debug_log()
  *
@@ -86,6 +88,7 @@ const char *cam_get_module_name(unsigned int module_id);
 #define CAM_ERR(__module, fmt, args...)                            \
 	pr_info("CAM_ERR: %s: %s: %d " fmt "\n",                     \
 		cam_get_module_name(__module), __func__,  __LINE__, ##args)
+
 /*
  * CAM_WARN
  * @brief    :  This Macro will print warning logs
@@ -181,5 +184,16 @@ const char *cam_get_module_name(unsigned int module_id);
 				cam_get_module_name(__module), __func__,\
 				__LINE__, ##args);			\
 	})
+
+#endif
+
+#define CAM_ERR
+#define CAM_WARN
+#define CAM_INFO
+#define CAM_INFO_RATE_LIMIT
+#define CAM_INFO_RATE_LIMIT_CUSTOM
+#define CAM_DBG
+#define CAM_ERR_RATE_LIMIT
+#define CAM_ERR_RATE_LIMIT_CUSTOM
 
 #endif /* _CAM_DEBUG_UTIL_H_ */
