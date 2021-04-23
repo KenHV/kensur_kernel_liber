@@ -5212,7 +5212,7 @@ int smblib_set_prop_thermal_overheat(struct smb_charger *chg,
 irqreturn_t default_irq_handler(int irq, void *data)
 {
 	struct smb_irq_data *irq_data = data;
-	struct smb_charger *chg = irq_data->parent_data;
+	struct smb_charger __maybe_unused *chg = irq_data->parent_data;
 
 	smblib_dbg(chg, PR_INTERRUPT, "IRQ: %s\n", irq_data->name);
 	return IRQ_HANDLED;
@@ -7879,7 +7879,7 @@ static void smblib_lpd_detach_work(struct work_struct *work)
 		chg->lpd_stage = LPD_STAGE_NONE;
 }
 
-static char *dr_mode_text[] = {
+static char __maybe_unused *dr_mode_text[] = {
 	"ufp", "dfp", "none"
 };
 
@@ -8363,7 +8363,7 @@ int smblib_deinit(struct smb_charger *chg)
 
 struct smb_charger *mmi_chip;
 
-static char *stepchg_str[] = {
+static char __maybe_unused *stepchg_str[] = {
 	[STEP_MAX]		= "MAX",
 	[STEP_NORM]		= "NORMAL",
 	[STEP_EB]		= "EXTERNAL BATT",
@@ -8374,7 +8374,7 @@ static char *stepchg_str[] = {
 	[STEP_NONE]		= "NONE",
 };
 
-static char *ebchg_str[] = {
+static char __maybe_unused *ebchg_str[] = {
 	[EB_DISCONN]		= "DISCONN",
 	[EB_SINK]		= "SINK",
 	[EB_SRC]		= "SOURCE",
