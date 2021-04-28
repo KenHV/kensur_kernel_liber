@@ -2375,6 +2375,7 @@ static struct spi_driver fts_ts_driver = {
         .name = FTS_DRIVER_NAME,
         .owner = THIS_MODULE,
         .of_match_table = of_match_ptr(fts_dt_match),
+		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
     },
     .id_table = fts_ts_id,
 };
