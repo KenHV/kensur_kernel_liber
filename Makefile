@@ -695,10 +695,11 @@ KBUILD_CFLAGS  += $(call cc-option, -Wno-psabi)
 ifdef CONFIG_CC_OPTIMIZE_FOR_SIZE
 KBUILD_CFLAGS	+= -Os $(call cc-disable-warning,maybe-uninitialized,)
 else
+KBUILD_AFLAGS	+= -O3
+KBUILD_CFLAGS	+= -O3
+KBUILD_LDFLAGS	+= -O3
 ifdef CONFIG_PROFILE_ALL_BRANCHES
-KBUILD_CFLAGS	+= -O3 $(call cc-disable-warning,maybe-uninitialized,)
-else
-KBUILD_CFLAGS   += -O3
+KBUILD_CFLAGS	+= $(call cc-disable-warning,maybe-uninitialized,)
 endif
 endif
 
