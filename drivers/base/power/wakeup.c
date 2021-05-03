@@ -941,7 +941,9 @@ void pm_system_irq_wakeup(unsigned int irq_number)
 					irq_number, name);
 
 		}
+#ifdef CONFIG_PM_DEBUG
 		log_wakeup_reason(irq_number);
+#endif
 		pm_wakeup_irq = irq_number;
 		pm_system_wakeup();
 	}
