@@ -17,6 +17,7 @@
 #include <linux/context_tracking.h>
 #include <linux/rcupdate_wait.h>
 
+#include <linux/binfmts.h>
 #include <linux/blkdev.h>
 #include <linux/kcov.h>
 #include <linux/kprobes.h>
@@ -7244,6 +7245,9 @@ int sched_updown_migrate_handler(struct ctl_table *table, int write,
 	unsigned int *old_val;
 	static DEFINE_MUTEX(mutex);
 	static int cap_margin_levels = -1;
+
+	if (task_is_booster(current))
+		return 0;
 
 	mutex_lock(&mutex);
 
