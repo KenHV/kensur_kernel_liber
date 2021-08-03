@@ -89,6 +89,8 @@ struct usbnet {
 #		define EVENT_NO_IP_ALIGN	13
 #		define USBNET_DISCONNECT	14
 #		define USBNET_LINK		15
+	u32			rx_speed;	/* in bps - NOT Mbps */
+	u32			tx_speed;	/* in bps - NOT Mbps */
 	void			*ipc_log_ctxt;
 	int			netdev_id;
 
