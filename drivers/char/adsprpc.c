@@ -236,7 +236,6 @@ struct smq_invoke_ctx {
 	uint32_t *crc;
 	unsigned int magic;
 	uint64_t ctxid;
-	bool pm_awake_voted;
 };
 
 struct fastrpc_ctx_lst {
@@ -1279,7 +1278,6 @@ static int context_alloc(struct fastrpc_file *fl, uint32_t kernel,
 	ctx->tgid = fl->tgid;
 	init_completion(&ctx->work);
 	ctx->magic = FASTRPC_CTX_MAGIC;
-	ctx->pm_awake_voted = false;
 
 	spin_lock(&fl->hlock);
 	hlist_add_head(&ctx->hn, &clst->pending);
@@ -1966,7 +1964,6 @@ static int fastrpc_internal_invoke(struct fastrpc_file *fl, uint32_t mode,
 	int err = 0, cid = -1, interrupted = 0;
 	struct timespec64 invoket = {0};
 	int64_t *perf_counter = NULL;
-	bool pm_awake_voted;
 
 	cid = fl->cid;
 	VERIFY(err, cid >= ADSP_DOMAIN_ID && cid < NUM_CHANNELS);
@@ -1980,10 +1977,7 @@ static int fastrpc_internal_invoke(struct fastrpc_file *fl, uint32_t mode,
 		goto bail;
 	}
 	perf_counter = getperfcounter(fl, PERF_COUNT);
-	pm_awake_voted = false;
-	if (interrupted != -ERESTARTSYS)
-		fastrpc_pm_awake(fl->wake_enable, &pm_awake_voted,
-			gcinfo[cid].secure);
+
 	if (fl->profile)
 		ktime_get_real_ts64(&invoket);
 
@@ -2033,7 +2027,6 @@ static int fastrpc_internal_invoke(struct fastrpc_file *fl, uint32_t mode,
 	if (err)
 		goto bail;
  wait:
-	fastrpc_pm_relax(&pm_awake_voted, gcinfo[cid].secure);
 	if (kernel)
 		wait_for_completion(&ctx->work);
 	else
@@ -2080,7 +2073,6 @@ bail:
 				*count = *count+1;
 		}
 	}
-	fastrpc_pm_relax(&pm_awake_voted, gcinfo[cid].secure);
 	return err;
 }
 
@@ -4659,10 +4651,6 @@ static void __exit fastrpc_device_exit(void)
 	unregister_chrdev_region(me->dev_no, NUM_CHANNELS);
 	if (me->rpmsg_register == 1)
 		unregister_rpmsg_driver(&fastrpc_rpmsg_client);
-	if (me->wake_source)
-		wakeup_source_unregister(me->wake_source);
-	if (me->wake_source_secure)
-		wakeup_source_unregister(me->wake_source_secure);
 	debugfs_remove_recursive(debugfs_root);
 }
 
