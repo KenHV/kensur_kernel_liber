@@ -7284,9 +7284,9 @@ int dsi_display_set_mode(struct dsi_display *display,
 		goto error;
 	}
 
-	pr_err("mdp_transfer_time_us=%d us\n",
+	pr_debug("mdp_transfer_time_us=%d us\n",
 			adj_mode.priv_info->mdp_transfer_time_us);
-	pr_err("hactive= %d,vactive= %d,fps=%d\n",
+	pr_debug("hactive= %d,vactive= %d,fps=%d\n",
 			adj_mode.timing.h_active, adj_mode.timing.v_active,
 			adj_mode.timing.refresh_rate);
 
@@ -7683,7 +7683,7 @@ int dsi_display_prepare(struct dsi_display *display)
 	}
 
 	SDE_EVT32(SDE_EVTLOG_FUNC_ENTRY);
-	pr_info("panel_name=%s ctrl-index=%d\n",
+	pr_debug("panel_name=%s ctrl-index=%d\n",
 			display->panel->name, ctrl->ctrl->cell_index);
 
 	mutex_lock(&display->display_lock);
