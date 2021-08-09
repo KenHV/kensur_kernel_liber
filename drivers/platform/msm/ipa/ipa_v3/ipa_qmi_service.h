@@ -32,6 +32,8 @@
 #define SUBSYS_LOCAL_MODEM "modem"
 #define SUBSYS_REMOTE_MODEM "esoc0"
 
+#define pr_debug_ratelimited_ipa(fmt, ...)				\
+	printk_ratelimited_ipa(KERN_DEBUG pr_fmt(fmt), ##__VA_ARGS__)
 
 #define IPAWANDBG(fmt, args...) \
 	do { \
@@ -54,7 +56,7 @@
 
 #define IPAWANERR(fmt, args...) \
 	do { \
-		pr_err(DEV_NAME " %s:%d " fmt, __func__,\
+		pr_debug(DEV_NAME " %s:%d " fmt, __func__,\
 				__LINE__, ## args); \
 		IPA_IPC_LOGGING(ipa_get_ipc_logbuf(), \
 				DEV_NAME " %s:%d " fmt, ## args); \
@@ -64,7 +66,7 @@
 
 #define IPAWANERR_RL(fmt, args...) \
 	do { \
-		pr_err_ratelimited_ipa(DEV_NAME " %s:%d " fmt, __func__,\
+		pr_debug_ratelimited_ipa(DEV_NAME " %s:%d " fmt, __func__,\
 				__LINE__, ## args); \
 		IPA_IPC_LOGGING(ipa_get_ipc_logbuf(), \
 				DEV_NAME " %s:%d " fmt, ## args); \
@@ -74,7 +76,7 @@
 
 #define IPAWANINFO(fmt, args...) \
 	do { \
-		pr_info(DEV_NAME " %s:%d " fmt, __func__,\
+		pr_debug(DEV_NAME " %s:%d " fmt, __func__,\
 				__LINE__, ## args); \
 		IPA_IPC_LOGGING(ipa_get_ipc_logbuf(), \
 				DEV_NAME " %s:%d " fmt, ## args); \

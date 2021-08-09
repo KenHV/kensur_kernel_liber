@@ -39,7 +39,7 @@
 
 #define IPA_RM_ERR(fmt, args...) \
 	do { \
-		pr_err(IPA_RM_DRV_NAME " %s:%d " fmt, __func__, __LINE__, \
+		pr_debug(IPA_RM_DRV_NAME " %s:%d " fmt, __func__, __LINE__, \
 			## args); \
 		IPA_IPC_LOGGING(ipa_get_ipc_logbuf(), \
 			IPA_RM_DRV_NAME " %s:%d " fmt, ## args); \
