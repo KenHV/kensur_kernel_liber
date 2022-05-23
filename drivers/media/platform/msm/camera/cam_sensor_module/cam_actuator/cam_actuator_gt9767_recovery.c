@@ -26,15 +26,6 @@
 
 #define GT9767_RECOVERY_NAME "gt9767_recovery"
 
-#define CCI_INTF_DEBUG
-#ifdef CCI_INTF_DEBUG
-#ifdef pr_debug
-#undef pr_debug
-#endif
-#define pr_debug pr_err
-#endif
-
-
 #define CCI_SCL0 18
 #define CCI_SDA0 17
 

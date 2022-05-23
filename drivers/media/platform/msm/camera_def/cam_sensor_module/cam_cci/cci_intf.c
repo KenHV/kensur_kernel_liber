@@ -24,14 +24,6 @@
 
 #define CCI_INTF_NAME "msm_cci_intf"
 
-//#define CCI_INTF_DEBUG
-#ifdef CCI_INTF_DEBUG
-#ifdef pr_debug
-#undef pr_debug
-#endif
-#define pr_debug pr_err
-#endif
-
 struct msm_cci_intf_ctrl_t {
 	struct cam_subdev v4l2_dev_str;
 	struct platform_device *pdev;

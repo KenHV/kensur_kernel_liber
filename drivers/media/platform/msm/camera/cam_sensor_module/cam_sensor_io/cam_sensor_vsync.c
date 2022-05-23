@@ -24,14 +24,6 @@
 
 #define CAM_VSYNC_NAME "cam_sensor_vsync"
 
-#define CCI_INTF_DEBUG
-#ifdef CCI_INTF_DEBUG
-#ifdef pr_debug
-#undef pr_debug
-#endif
-#define pr_debug pr_err
-#endif
-
 #define CAM_SENSOR_VSYNC_GPIO1 95
 #define CAM_SENSOR_VSYNC_GPIO2 96
 
